@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { Text } from "react-native";
-import { TextInput } from "react-native-paper";
+import { Text, View } from "react-native";
+import { Button, TextInput } from "react-native-paper";
 
 import styled from "styled-components";
 
 const UsersText = styled(Text)`
 	font-weight: bold;
-	font-size: 20px;
+	font-size: 18px;
 `;
 
 const NumberOfUsersInput = styled(TextInput)`
@@ -16,10 +16,20 @@ const NumberOfUsersInput = styled(TextInput)`
 	background-color: white;
 `;
 
-export const AddUsers = ({ setNumberOfUsers }) => {
+const InnerCard = styled(View).attrs({
+	elevation: 5,
+})`
+	flex: 0.4;
+	background-color: #e8eaf6;
+	border-radius: 10px;
+	padding: 15px;
+	margin: 10px;
+`;
+
+export const AddUserScreen = ({ navigation, setNumberOfUsers }) => {
 	const [number, onChangeNumber] = useState(null);
 	return (
-		<>
+		<InnerCard>
 			<UsersText> How many users want to have some fun </UsersText>
 			<NumberOfUsersInput
 				value={number}
@@ -27,8 +37,17 @@ export const AddUsers = ({ setNumberOfUsers }) => {
 				keyboardType="numeric"
 				activeOutlineColor="green"
 				onChangeText={onChangeNumber}
-				onEndEditing={() => setNumberOfUsers(number)}
 			/>
-		</>
+			<Button
+				mode="contained"
+				color="lightgreen"
+				onPress={() => {
+					setNumberOfUsers(number);
+					navigation.navigate("ChoseGame", { numberOfUsers: number });
+				}}
+			>
+				Confirm
+			</Button>
+		</InnerCard>
 	);
 };
