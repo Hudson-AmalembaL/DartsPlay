@@ -7,7 +7,7 @@ import styled from "styled-components";
 const UsersText = styled(Text)`
 	font-weight: bold;
 	font-size: 18px;
-	font-family: Poppins_700Bold;
+	font-family: Poppins_100Thin;
 `;
 // font-family: Poppins_500Medium;
 
@@ -32,7 +32,7 @@ export const AddUserScreen = ({ navigation }) => {
 	const [number, onChangeNumber] = useState(null);
 	return (
 		<InnerCard>
-			<UsersText> How many users want to have some fun </UsersText>
+			<UsersText>How many users want to have some fun </UsersText>
 			<NumberOfUsersInput
 				value={number}
 				mode="outlined"

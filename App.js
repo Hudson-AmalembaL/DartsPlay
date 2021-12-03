@@ -36,8 +36,7 @@ const Stack = createNativeStackNavigator();
 export default function App() {
 	const [numberOfUsers, setNumberOfUsers] = useState(0);
 
-	let [poppinsFontsLoaded] = useFonts({
-		Poppins_500Medium,
+	let [poppinsFontsLoaded] = usePoppinsFonts({
 		Poppins_100Thin,
 		Poppins_100Thin_Italic,
 		Poppins_200ExtraLight,
@@ -65,19 +64,20 @@ export default function App() {
 				style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
 			/>
 		);
+	} else {
+		return (
+			<SafeAreaProvider>
+				<NavigationContainer>
+					<Stack.Navigator>
+						<Stack.Screen
+							name="Home"
+							component={HomeScreen}
+							options={{ headerShown: false }}
+						/>
+					</Stack.Navigator>
+				</NavigationContainer>
+				<StatusBar style="auto" backgroundColor="#74d88e" />
+			</SafeAreaProvider>
+		);
 	}
-	return (
-		<SafeAreaProvider>
-			<NavigationContainer>
-				<Stack.Navigator>
-					<Stack.Screen
-						name="Home"
-						component={HomeScreen}
-						options={{ headerShown: false }}
-					/>
-				</Stack.Navigator>
-			</NavigationContainer>
-			<StatusBar style="auto" backgroundColor="#74d88e" />
-		</SafeAreaProvider>
-	);
 }
