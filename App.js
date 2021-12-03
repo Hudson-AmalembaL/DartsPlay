@@ -22,7 +22,7 @@ export default function App() {
 					/>
 				</Stack.Navigator>
 			</NavigationContainer>
-			<StatusBar style="auto" backgroundColor="lightgreen" />
+			<StatusBar style="auto" backgroundColor="#74d88e" />
 		</SafeAreaProvider>
 	);
 }

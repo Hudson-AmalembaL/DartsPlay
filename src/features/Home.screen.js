@@ -32,25 +32,14 @@ const InnerCard = styled(View).attrs({
 const Stack = createNativeStackNavigator();
 
 export const HomeScreen = () => {
-	const [numberOfUsers, setNumberOfUsers] = useState(0);
-
-	const AddUsersComponent = ({ navigation }) => {
-		return (
-			<AddUserScreen
-				navigation={navigation}
-				setNumberOfUsers={setNumberOfUsers}
-			/>
-		);
-	};
 	return (
 		<SafeArea>
 			<Header />
 			<Wrapper>
 				<Stack.Navigator screenOptions={{ headerShown: false }}>
-					<Stack.Screen name="AddUsers" component={AddUsersComponent} />
+					<Stack.Screen name="AddUsers" component={AddUserScreen} />
 					<Stack.Screen name="ChoseGame" component={Game301} />
 				</Stack.Navigator>
-				<Text>{numberOfUsers}</Text>
 			</Wrapper>
 		</SafeArea>
 	);

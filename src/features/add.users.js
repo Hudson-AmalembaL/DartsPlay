@@ -26,7 +26,7 @@ const InnerCard = styled(View).attrs({
 	margin: 10px;
 `;
 
-export const AddUserScreen = ({ navigation, setNumberOfUsers }) => {
+export const AddUserScreen = ({ navigation }) => {
 	const [number, onChangeNumber] = useState(null);
 	return (
 		<InnerCard>
@@ -40,9 +40,8 @@ export const AddUserScreen = ({ navigation, setNumberOfUsers }) => {
 			/>
 			<Button
 				mode="contained"
-				color="lightgreen"
+				color="#74d88e"
 				onPress={() => {
-					setNumberOfUsers(number);
 					navigation.navigate("ChoseGame", { numberOfUsers: number });
 				}}
 			>

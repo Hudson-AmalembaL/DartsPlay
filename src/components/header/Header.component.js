@@ -9,7 +9,7 @@ const HeaderView = styled(View).attrs({
 	elevation: 4,
 })`
 	align-items: center;
-	background-color: lightgreen;
+	background-color: #74d88e;
 	border-radius: 5px;
 	height: 40px;
 	padding: 5px;
