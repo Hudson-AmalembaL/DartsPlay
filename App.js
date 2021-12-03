@@ -1,16 +1,71 @@
 import "react-native-gesture-handler";
-import React, { useState } from "react";
-import { StatusBar } from "expo-status-bar";
-import { NavigationContainer } from "@react-navigation/native";
+import React, { useState, useEffect } from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-
+import { StatusBar } from "expo-status-bar";
+import AppLoading from "expo-app-loading";
+import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { ActivityIndicator } from "react-native-paper";
+
+import {
+	useFonts as usePoppinsFonts,
+	Poppins_100Thin,
+	Poppins_100Thin_Italic,
+	Poppins_200ExtraLight,
+	Poppins_200ExtraLight_Italic,
+	Poppins_300Light,
+	Poppins_300Light_Italic,
+	Poppins_400Regular,
+	Poppins_400Regular_Italic,
+	Poppins_500Medium,
+	Poppins_500Medium_Italic,
+	Poppins_600SemiBold,
+	Poppins_600SemiBold_Italic,
+	Poppins_700Bold,
+	Poppins_700Bold_Italic,
+	Poppins_800ExtraBold,
+	Poppins_800ExtraBold_Italic,
+	Poppins_900Black,
+	Poppins_900Black_Italic,
+} from "@expo-google-fonts/poppins";
+
 import { HomeScreen } from "./src/features/Home.screen";
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
 	const [numberOfUsers, setNumberOfUsers] = useState(0);
+
+	let [poppinsFontsLoaded] = useFonts({
+		Poppins_500Medium,
+		Poppins_100Thin,
+		Poppins_100Thin_Italic,
+		Poppins_200ExtraLight,
+		Poppins_200ExtraLight_Italic,
+		Poppins_300Light,
+		Poppins_300Light_Italic,
+		Poppins_400Regular,
+		Poppins_400Regular_Italic,
+		Poppins_500Medium,
+		Poppins_500Medium_Italic,
+		Poppins_600SemiBold,
+		Poppins_600SemiBold_Italic,
+		Poppins_700Bold,
+		Poppins_700Bold_Italic,
+		Poppins_800ExtraBold,
+		Poppins_800ExtraBold_Italic,
+		Poppins_900Black,
+		Poppins_900Black_Italic,
+	});
+	if (!poppinsFontsLoaded) {
+		return (
+			<ActivityIndicator
+				animating={true}
+				color="#74d88e"
+				style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+			/>
+		);
+	}
 	return (
 		<SafeAreaProvider>
 			<NavigationContainer>

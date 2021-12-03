@@ -7,7 +7,9 @@ import styled from "styled-components";
 const UsersText = styled(Text)`
 	font-weight: bold;
 	font-size: 18px;
+	font-family: Poppins_700Bold;
 `;
+// font-family: Poppins_500Medium;
 
 const NumberOfUsersInput = styled(TextInput)`
 	height: 40px;
