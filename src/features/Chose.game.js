@@ -16,13 +16,13 @@ const InnerCard = styled(View).attrs({
 export const Game301 = ({ route, navigation }) => {
 	return (
 		<InnerCard>
-			<Text>Number of users: {route.params.numberOfUsers}</Text>
+			<Text>Number of users: {route.params.numberOfPlayers}</Text>
 			<Text> Game 301 </Text>
 			<Button
 				mode="contained"
 				color="lightgreen"
 				onPress={() => {
-					navigation.navigate("AddUsers");
+					navigation.navigate("AddPlayers");
 				}}
 			>
 				Back

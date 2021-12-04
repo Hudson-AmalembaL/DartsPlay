@@ -37,7 +37,7 @@ export const HomeScreen = () => {
 			<Header />
 			<Wrapper>
 				<Stack.Navigator screenOptions={{ headerShown: false }}>
-					<Stack.Screen name="AddUsers" component={AddUserScreen} />
+					<Stack.Screen name="AddPlayers" component={AddUserScreen} />
 					<Stack.Screen name="ChoseGame" component={Game301} />
 				</Stack.Navigator>
 			</Wrapper>

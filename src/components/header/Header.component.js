@@ -31,6 +31,7 @@ export const Header = () => {
 	return (
 		<HeaderView>
 			<Icon />
+
 			<HeaderText>DARTS</HeaderText>
 		</HeaderView>
 	);

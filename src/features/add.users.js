@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Text, View } from "react-native";
+import { Text, View, ToastAndroid, Image, WebView } from "react-native";
 import { Button, TextInput } from "react-native-paper";
+import { Ionicons } from "@expo/vector-icons";
 
 import styled from "styled-components";
 
@@ -11,11 +12,12 @@ const UsersText = styled(Text)`
 `;
 // font-family: Poppins_500Medium;
 
-const NumberOfUsersInput = styled(TextInput)`
+const NumberOfPlayersInput = styled(TextInput)`
+	flex: 1;
 	height: 40px;
 	padding: 10px;
 	border-radius: 10px;
-	background-color: white;
+	border-color: white;
 `;
 
 const InnerCard = styled(View).attrs({
@@ -30,21 +32,43 @@ const InnerCard = styled(View).attrs({
 
 export const AddUserScreen = ({ navigation }) => {
 	const [number, onChangeNumber] = useState(null);
+
+	const showToastWithGravityAndOffset = (message) => {
+		ToastAndroid.showWithGravityAndOffset(
+			message,
+			ToastAndroid.LONG,
+			ToastAndroid.BOTTOM,
+			25,
+			100
+		);
+	};
+
 	return (
 		<InnerCard>
-			<UsersText>How many users want to have some fun </UsersText>
-			<NumberOfUsersInput
-				value={number}
-				mode="outlined"
-				keyboardType="numeric"
-				activeOutlineColor="green"
-				onChangeText={onChangeNumber}
-			/>
+			<UsersText>How many players want to have some fun </UsersText>
+			<View
+				style={{
+					flexDirection: "row",
+					alignItems: "center",
+				}}
+			>
+				<NumberOfPlayersInput
+					value={number}
+					mode="outlined"
+					keyboardType="numeric"
+					activeOutlineColor="green"
+					onChangeText={onChangeNumber}
+				/>
+			</View>
 			<Button
 				mode="contained"
 				color="#74d88e"
 				onPress={() => {
-					navigation.navigate("ChoseGame", { numberOfUsers: number });
+					number > 5
+						? showToastWithGravityAndOffset(
+								`Players can not be more than 6. Yours ${number} !`
+						  )
+						: navigation.navigate("ChoseGame", { numberOfPlayers: number });
 				}}
 			>
 				Confirm
