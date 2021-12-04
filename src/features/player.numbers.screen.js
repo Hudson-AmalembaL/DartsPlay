@@ -12,7 +12,11 @@ const UsersText = styled(Text)`
 `;
 // font-family: Poppins_500Medium;
 
-const NumberOfPlayersInput = styled(TextInput)`
+const NumberOfPlayersInput = styled(TextInput).attrs({
+	mode: "outlined",
+	keyboardType: "numeric",
+	activeOutlineColor: "green",
+})`
 	flex: 1;
 	height: 40px;
 	padding: 10px;
@@ -23,7 +27,7 @@ const NumberOfPlayersInput = styled(TextInput)`
 const InnerCard = styled(View).attrs({
 	elevation: 5,
 })`
-	flex: 0.4;
+	flex: 0.8;
 	background-color: #e8eaf6;
 	border-radius: 10px;
 	padding: 15px;
@@ -52,27 +56,26 @@ export const PlayersNumberScreen = ({ navigation }) => {
 					alignItems: "center",
 				}}
 			>
-				<NumberOfPlayersInput
-					value={number}
-					mode="outlined"
-					keyboardType="numeric"
-					activeOutlineColor="green"
-					onChangeText={onChangeNumber}
-				/>
+				<NumberOfPlayersInput value={number} onChangeText={onChangeNumber} />
 			</View>
-			<Button
-				mode="contained"
-				color="#74d88e"
-				onPress={() => {
-					number > 5
-						? showToastWithGravityAndOffset(
-								`Players can not be more than 6. Yours ${number} !`
-						  )
-						: navigation.navigate("AddUserNames", { numberOfPlayers: number });
-				}}
-			>
-				Confirm
-			</Button>
+			<View style={{ padding: 20 }}>
+				<Button
+					mode="contained"
+					elevation={5}
+					color="#74d88e"
+					onPress={() => {
+						number > 5
+							? showToastWithGravityAndOffset(
+									`Players can not be more than 6. Yours ${number} !`
+							  )
+							: navigation.navigate("AddUserNames", {
+									numberOfPlayers: number,
+							  });
+					}}
+				>
+					Confirm
+				</Button>
+			</View>
 		</InnerCard>
 	);
 };
