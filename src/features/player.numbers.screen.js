@@ -30,7 +30,7 @@ const InnerCard = styled(View).attrs({
 	margin: 10px;
 `;
 
-export const AddUserScreen = ({ navigation }) => {
+export const PlayersNumberScreen = ({ navigation }) => {
 	const [number, onChangeNumber] = useState(null);
 
 	const showToastWithGravityAndOffset = (message) => {
@@ -68,7 +68,7 @@ export const AddUserScreen = ({ navigation }) => {
 						? showToastWithGravityAndOffset(
 								`Players can not be more than 6. Yours ${number} !`
 						  )
-						: navigation.navigate("ChoseGame", { numberOfPlayers: number });
+						: navigation.navigate("AddUserNames", { numberOfPlayers: number });
 				}}
 			>
 				Confirm

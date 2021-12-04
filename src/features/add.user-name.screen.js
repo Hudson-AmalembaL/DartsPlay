@@ -13,7 +13,7 @@ const InnerCard = styled(View).attrs({
 	margin: 10px;
 `;
 
-export const Game301 = ({ route, navigation }) => {
+export const AddUserNamesScreen = ({ route, navigation }) => {
 	return (
 		<InnerCard>
 			<Text>Number of users: {route.params.numberOfPlayers}</Text>
@@ -22,7 +22,7 @@ export const Game301 = ({ route, navigation }) => {
 				mode="contained"
 				color="lightgreen"
 				onPress={() => {
-					navigation.navigate("AddPlayers");
+					navigation.navigate("PlayersNumber");
 				}}
 			>
 				Back

@@ -6,8 +6,8 @@ import styled from "styled-components";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import { Header } from "../components/header/Header.component";
-import { AddUserScreen } from "./add.users";
-import { Game301 } from "./Chose.game";
+import { PlayersNumberScreen } from "./player.numbers.screen";
+import { AddUserNamesScreen } from "./add.user-name.screen.js";
 
 const SafeArea = styled(SafeAreaView)`
 	flex: 1;
@@ -37,8 +37,8 @@ export const HomeScreen = () => {
 			<Header />
 			<Wrapper>
 				<Stack.Navigator screenOptions={{ headerShown: false }}>
-					<Stack.Screen name="AddPlayers" component={AddUserScreen} />
-					<Stack.Screen name="ChoseGame" component={Game301} />
+					<Stack.Screen name="PlayersNumber" component={PlayersNumberScreen} />
+					<Stack.Screen name="AddUserNames" component={AddUserNamesScreen} />
 				</Stack.Navigator>
 			</Wrapper>
 		</SafeArea>
