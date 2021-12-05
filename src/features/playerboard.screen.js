@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text } from "react-native";
-
+// Game Logic goes here
 export const PlayerBoardScreen = ({ route, navigation }) => {
 	const players = route.params.players;
 
