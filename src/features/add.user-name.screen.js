@@ -32,9 +32,13 @@ const InputContainer = styled(View)`
 	border-bottom-color: lightgray;
 `;
 
+const ConfirmButtonContainer = styled(View)`
+	align-self: flex-end;
+	flex-direction: row;
+`;
+
 export const AddUserNamesScreen = ({ navigation }) => {
 	const [inputs, setInputs] = useState([{ key: "", value: "" }]);
-
 	const addHandler = () => {
 		const _inputs = [...inputs];
 		if (_inputs.length > 5) {
@@ -56,25 +60,26 @@ export const AddUserNamesScreen = ({ navigation }) => {
 		setInputs(_inputs);
 	};
 
+	const namesList = inputs.map((item) => item.value);
+
 	return (
 		<>
-			<View
-				style={{
-					alignSelf: "flex-end",
-					flexDirection: "row",
-				}}
-			>
-				<StyleButton onPress={() => console.log("Next Screen")}>
+			<ConfirmButtonContainer>
+				<StyleButton
+					onPress={() => {
+						navigation.navigate("PlayersBoard", { players: namesList });
+					}}
+				>
 					Confirm
 				</StyleButton>
-			</View>
+			</ConfirmButtonContainer>
 			<InnerCard>
 				<InputsContainer>
 					{inputs.map((input, key) => (
 						<InputContainer>
 							<UserName
 								key={key}
-								placeholder={"Enter name"}
+								placeholder={"Player name"}
 								value={input.value}
 								onChangeText={(text) => inputHandler(text, key)}
 							/>
