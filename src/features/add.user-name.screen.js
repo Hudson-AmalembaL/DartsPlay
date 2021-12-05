@@ -73,6 +73,7 @@ export const AddUserNamesScreen = ({ navigation }) => {
 					{inputs.map((input, key) => (
 						<InputContainer>
 							<UserName
+								key={key}
 								placeholder={"Enter name"}
 								value={input.value}
 								onChangeText={(text) => inputHandler(text, key)}
