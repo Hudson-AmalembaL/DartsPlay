@@ -24,10 +24,12 @@ export const PlayerNamesInput = styled(TextInput).attrs({
 	border-color: white;
 `;
 
-export const UserButton = ({ title, onPress }) => {
+export const UserButton = ({ title, onPress, color }) => {
 	return (
-		<Button mode="contained" color="lightgreen" onPress={onPress}>
-			{title}
-		</Button>
+		<View style={{ padding: 10 }}>
+			<Button mode="contained" color="#74d88e" onPress={onPress}>
+				{title}
+			</Button>
+		</View>
 	);
 };

@@ -18,7 +18,7 @@ export const SplashScreen = ({ navigation }) => {
 	return (
 		<InnerCard>
 			<Text> Welcome </Text>
-			<Button onPress={() => navigation.navigate("PlayersNumber")}>
+			<Button onPress={() => navigation.navigate("AddUserNames")}>
 				Start Game
 			</Button>
 		</InnerCard>

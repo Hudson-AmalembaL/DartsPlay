@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import styled from "styled-components";
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import { Header } from "../components/header/Header.component";
-import { PlayersNumberScreen } from "./player.numbers.screen";
 import { AddUserNamesScreen } from "./add.user-name.screen.js";
 import { SplashScreen } from "../features/splash.screen";
 
@@ -29,7 +28,6 @@ export const HomeScreen = () => {
 			<Wrapper>
 				<Stack.Navigator screenOptions={{ headerShown: false }}>
 					<Stack.Screen name="Splash" component={SplashScreen} />
-					<Stack.Screen name="PlayersNumber" component={PlayersNumberScreen} />
 					<Stack.Screen name="AddUserNames" component={AddUserNamesScreen} />
 				</Stack.Navigator>
 			</Wrapper>
