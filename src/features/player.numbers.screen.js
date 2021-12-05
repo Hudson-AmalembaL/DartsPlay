@@ -2,14 +2,15 @@ import React, { useState } from "react";
 import { Text, View, ToastAndroid, Image, WebView } from "react-native";
 import { Button, TextInput } from "react-native-paper";
 import { Ionicons } from "@expo/vector-icons";
+import { UserButton } from "./add.user-name.screen.styles";
 
 import styled from "styled-components";
 
 const UsersText = styled(Text)`
 	font-weight: bold;
 	font-size: 18px;
-	font-family: Poppins_100Thin;
 `;
+// font-family: Poppins_100Thin;
 // font-family: Poppins_500Medium;
 
 const NumberOfPlayersInput = styled(TextInput).attrs({
@@ -58,11 +59,19 @@ export const PlayersNumberScreen = ({ navigation }) => {
 			>
 				<NumberOfPlayersInput value={number} onChangeText={onChangeNumber} />
 			</View>
-			<View style={{ padding: 20 }}>
-				<Button
-					mode="contained"
-					elevation={5}
-					color="#74d88e"
+			<View
+				style={{
+					padding: 20,
+					flexDirection: "row",
+					justifyContent: "space-between",
+				}}
+			>
+				<UserButton
+					title="Cancel"
+					onPress={() => navigation.navigate("Splash")}
+				/>
+				<UserButton
+					title="Confirm"
 					onPress={() => {
 						number > 5
 							? showToastWithGravityAndOffset(
@@ -74,7 +83,7 @@ export const PlayersNumberScreen = ({ navigation }) => {
 					}}
 				>
 					Confirm
-				</Button>
+				</UserButton>
 			</View>
 		</InnerCard>
 	);
