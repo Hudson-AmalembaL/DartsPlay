@@ -1,73 +1,97 @@
 import React, { useState } from "react";
-import { View, Text } from "react-native";
+import {
+	View,
+	Text,
+	Button,
+	TextInput,
+	TouchableOpacity,
+	ScrollView,
+} from "react-native";
 import styled from "styled-components";
-import { Button, TextInput } from "react-native-paper";
-import { FlatList } from "react-native-gesture-handler";
-import { generateId } from "../utils/key.generator";
+import { InnerCard, UserButton } from "./add.user-name.screen.styles";
 
-const InnerCard = styled(View).attrs({
-	elevation: 5,
-})`
-	flex: 1;
-	background-color: #e8eaf6;
-	border-radius: 10px;
-	padding: 15px;
-	margin: 10px;
-`;
+import { Button as StyleButton } from "react-native-paper";
 
-const NumberOfPlayersInput = styled(TextInput).attrs({
-	mode: "outlined",
-	keyboardType: "numeric",
-	activeOutlineColor: "green",
-})`
-	flex: 1;
-	height: 40px;
+const UserName = styled(TextInput)`
+	height: 45px;
 	padding: 10px;
 	border-radius: 10px;
 	border-color: white;
 `;
 
-export const AddUserNamesScreen = ({ route, navigation }) => {
-	const { numberOfPlayers } = route.params;
-	const listOfPlayers = Array.from(new Array(Math.floor(numberOfPlayers)));
+const InputsContainer = styled(ScrollView)`
+	flex: 1;
+	margin-bottom: 20px;
+`;
 
-	const renderItem = (item) => {
-		return (
-			<NumberOfPlayersInput
-				placeholder={`Player ${item.index + 1}`}
-				onChangeText={() => null}
-			/>
-		);
+const InputContainer = styled(View)`
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	border-bottom-width: 1px;
+	border-bottom-color: lightgray;
+`;
+
+export const AddUserNamesScreen = ({ navigation }) => {
+	const [inputs, setInputs] = useState([{ key: "", value: "" }]);
+
+	const addHandler = () => {
+		const _inputs = [...inputs];
+		if (_inputs.length > 5) {
+			return null;
+		}
+		_inputs.push({ key: "", value: "" });
+		setInputs(_inputs);
+	};
+
+	const deleteHandler = (key) => {
+		const _inputs = inputs.filter((input, index) => index !== key);
+		setInputs(_inputs);
+	};
+
+	const inputHandler = (text, key) => {
+		const _inputs = [...inputs];
+		_inputs[key].value = text;
+		_inputs[key].key = key;
+		setInputs(_inputs);
 	};
 
 	return (
-		<InnerCard>
-			<Text style={{ padding: 10 }}>Number of Players: {numberOfPlayers} </Text>
-			<FlatList
-				data={listOfPlayers}
-				renderItem={renderItem}
-				keyExtractor={() => `${generateId(5)}`}
-			/>
-			<View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-				<Button
-					mode="contained"
-					color="lightgreen"
-					onPress={() => {
-						navigation.navigate("PlayersNumber");
-					}}
-				>
-					Back
-				</Button>
-				<Button
-					mode="contained"
-					color="lightgreen"
-					onPress={() => {
-						navigation.navigate("PlayersNumber");
-					}}
-				>
-					Next
-				</Button>
+		<>
+			<View
+				style={{
+					alignSelf: "flex-end",
+					flexDirection: "row",
+				}}
+			>
+				<StyleButton onPress={() => console.log("Next Screen")}>
+					Confirm
+				</StyleButton>
 			</View>
-		</InnerCard>
+			<InnerCard>
+				<InputsContainer>
+					{inputs.map((input, key) => (
+						<InputContainer>
+							<UserName
+								placeholder={"Enter name"}
+								value={input.value}
+								onChangeText={(text) => inputHandler(text, key)}
+							/>
+							<TouchableOpacity onPress={() => deleteHandler(key)}>
+								<Text style={{ color: "red", fontSize: 13 }}>Delete</Text>
+							</TouchableOpacity>
+						</InputContainer>
+					))}
+					<UserButton title="Add" color="green" onPress={addHandler} />
+				</InputsContainer>
+				<View style={{ alignSelf: "center" }}>
+					<Button
+						title="cancel"
+						color="darkred"
+						onPress={() => navigation.navigate("Splash")}
+					/>
+				</View>
+			</InnerCard>
+		</>
 	);
 };
