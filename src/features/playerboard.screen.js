@@ -1,36 +1,46 @@
-import React from "react";
-import { View, Text } from "react-native";
+import React, { useState } from "react";
+import { Button } from "react-native-paper";
 
+import {
+	PlayerBoardWrapper,
+	PlayerBoardScrollView,
+	PlayerCard,
+	CardHeader,
+	PlayerName,
+	PlayerScore,
+	InputScore,
+} from "./playerboard.screen.styles";
+
+// Game Logic goes here
 export const PlayerBoardScreen = ({ route, navigation }) => {
-	const players = route.params.players;
+	const playerValueSetter = () => {
+		const players = route.params.players;
+		const valuesList = [];
+		for (let i = 0; i < players.length; i++) {
+			valuesList.push({ name: players[i], score: 0 });
+		}
+		return valuesList;
+	};
+
+	const [scores, setScores] = useState(playerValueSetter);
 
 	return (
-		<View style={{ flex: 1 }}>
-			<Text> Player Board</Text>
-			<View style={{ flex: 1, alignItems: "center" }}>
-				<View
-					style={{
-						flexDirection: "row",
-						flexWrap: "wrap",
-						padding: 12,
-					}}
-				>
-					{players.map((item) => (
-						<View
-							style={{
-								padding: 55,
-								backgroundColor: "#74d88e",
-								margin: 3,
-								flex: 1,
-								borderRadius: 12,
-							}}
-							elevation={4}
-						>
-							<Text style={{ alignSelf: "center" }}>{item}</Text>
-						</View>
-					))}
-				</View>
-			</View>
-		</View>
+		<PlayerBoardWrapper>
+			<Button onPress={() => null}>Score Board </Button>
+			<PlayerBoardScrollView>
+				{scores.map((item) => {
+					const { name, score } = item;
+					return (
+						<PlayerCard>
+							<CardHeader>
+								<PlayerName>{name}</PlayerName>
+								<PlayerScore> Score: {score} </PlayerScore>
+							</CardHeader>
+							<InputScore placeholder="Score" />
+						</PlayerCard>
+					);
+				})}
+			</PlayerBoardScrollView>
+		</PlayerBoardWrapper>
 	);
 };
