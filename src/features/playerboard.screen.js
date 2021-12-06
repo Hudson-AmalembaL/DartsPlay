@@ -31,7 +31,7 @@ export const PlayerBoardScreen = ({ route, navigation }) => {
 				{scores.map((item) => {
 					const { name, score } = item;
 					return (
-						<PlayerCard>
+						<PlayerCard key={name}>
 							<CardHeader>
 								<PlayerName>{name}</PlayerName>
 								<PlayerScore> Score: {score} </PlayerScore>
