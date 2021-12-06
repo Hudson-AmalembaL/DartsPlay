@@ -8,33 +8,21 @@ export const InnerCard = styled(View).attrs({
 	elevation: 5,
 })`
 	flex: 1;
-	background-color: #e8eaf6;
-	border-radius: 10px;
-	padding: 15px;
-	margin: 10px;
-`;
-
-export const PlayerNamesInput = styled(TextInput).attrs({
-	mode: "outlined",
-	activeOutlineColor: "green",
-})`
-	flex: 1;
-	height: 40px;
-	padding: 10px;
-	border-radius: 10px;
-	border-color: white;
+	background-color: ${(props) => props.theme.colors.bg.secondary};
+	border-radius: ${(props) => props.theme.sizes[0]};
+	padding: ${(props) => props.theme.space[3]};
+	margin: ${(props) => props.theme.space[2]};
 `;
 
 export const UserName = styled(TextInput)`
-	height: 45px;
-	padding: 10px;
-	border-radius: 10px;
-	border-color: white;
+	height: ${(props) => props.theme.sizes[3]};
+	padding: ${(props) => props.theme.space[2]};
+	border-radius: ${(props) => props.theme.sizes[0]};
 `;
 
 export const InputsContainer = styled(ScrollView)`
 	flex: 1;
-	margin-bottom: 20px;
+	margin-bottom: ${(props) => props.theme.space[3]};
 `;
 
 export const InputContainer = styled(View)`
@@ -52,16 +40,6 @@ export const ConfirmButtonContainer = styled(View)`
 
 export const DeleteButton = styled(TouchableOpacity)``;
 export const DeleteText = styled(Text)`
-	color: red;
-	font-size: 13px;
+	color: ${(props) => props.theme.colors.bg.danger};
+	font-size: ${(props) => props.theme.sizes[1]};
 `;
-
-export const UserButton = ({ title, onPress, color }) => {
-	return (
-		<View style={{ padding: 10 }}>
-			<Button mode="contained" color="#74d88e" onPress={onPress}>
-				{title}
-			</Button>
-		</View>
-	);
-};

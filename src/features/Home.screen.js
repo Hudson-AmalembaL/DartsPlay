@@ -1,7 +1,4 @@
-import React, { useState } from "react";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { View } from "react-native";
-import styled from "styled-components";
+import React from "react";
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
@@ -10,15 +7,7 @@ import { AddUserNamesScreen } from "./add.user-name.screen.js";
 import { SplashScreen } from "../features/splash.screen";
 import { PlayerBoardScreen } from "./playerboard.screen";
 
-const SafeArea = styled(SafeAreaView)`
-	flex: 1;
-`;
-
-const Wrapper = styled(View)`
-	padding: 10px;
-	margin-top: 70px;
-	flex: 1;
-`;
+import { SafeArea, Wrapper } from "./Home.screen.styles";
 
 const Stack = createNativeStackNavigator();
 

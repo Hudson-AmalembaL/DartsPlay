@@ -14,32 +14,32 @@ export const PlayerBoardScrollView = styled(ScrollView).attrs({
 export const PlayerCard = styled(View).attrs({
 	elevation: 3,
 })`
-	background-color: #74d88e;
-	margin: 3px;
-	border-radius: 12px;
-	height: 150px;
-	padding: 15px;
+	background-color: ${(props) => props.theme.colors.bg.primary};
+	padding: ${(props) => props.theme.space[3]};
+	border-radius: ${(props) => props.theme.sizes[0]};
+	margin: ${(props) => props.theme.space[1]};
+	height: ${(props) => props.theme.sizes[4]};
 `;
 
 export const PlayerName = styled(Text)`
-	font-size: 20px;
+	font-size: ${(props) => props.theme.sizes[1]};
 	font-weight: bold;
 	text-transform: uppercase;
 `;
 
 export const PlayerScore = styled(Text)`
-	font-size: 20px;
+	font-size: ${(props) => props.theme.sizes[1]};
 	font-weight: bold;
 `;
 
 export const InputScore = styled(TextInput).attrs({
 	elevation: 4,
+	keyboardType: "numeric",
 })`
-	height: 45px;
-	padding: 10px;
-	border-radius: 10px;
-	border-color: white;
-	background-color: #ffeeee;
+	height: ${(props) => props.theme.space[4]};
+	padding: ${(props) => props.theme.space[2]};
+	border-radius: ${(props) => props.theme.sizes[0]};
+	background-color: ${(props) => props.theme.colors.bg.secondary};
 `;
 
 export const CardHeader = styled(View)`
