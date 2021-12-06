@@ -1,10 +1,14 @@
 import React from "react";
+import { View } from "react-native";
 import { Button } from "react-native-paper";
+import { colors } from "../../infrastructure/theme/colors";
 
 export const UserButton = ({ title, onPress }) => {
 	return (
-		<Button mode="contained" color="#74d88e" onPress={onPress}>
-			{title}
-		</Button>
+		<View style={{ padding: 10 }}>
+			<Button mode="contained" color={colors.bg.primary} onPress={onPress}>
+				{title}
+			</Button>
+		</View>
 	);
 };

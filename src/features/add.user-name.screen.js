@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { View } from "react-native";
 import {
 	InnerCard,
-	UserButton,
 	UserName,
 	InputsContainer,
 	InputContainer,
@@ -10,8 +9,10 @@ import {
 	DeleteButton,
 	DeleteText,
 } from "./add.user-name.screen.styles";
+import { UserButton } from "../components/button/button.component";
 
 import { Button as StyleButton } from "react-native-paper";
+import { colors } from "../infrastructure/theme/colors";
 
 export const AddUserNamesScreen = ({ navigation }) => {
 	const [inputs, setInputs] = useState([{ key: "", value: "" }]);
@@ -63,7 +64,11 @@ export const AddUserNamesScreen = ({ navigation }) => {
 							</DeleteButton>
 						</InputContainer>
 					))}
-					<UserButton title="Add" color="green" onPress={addHandler} />
+					<UserButton
+						title="Add"
+						color={colors.bg.primary}
+						onPress={addHandler}
+					/>
 				</InputsContainer>
 				<View style={{ alignSelf: "center" }}>
 					<StyleButton onPress={() => navigation.navigate("Splash")}>

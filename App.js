@@ -6,36 +6,32 @@ import AppLoading from "expo-app-loading";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { ActivityIndicator } from "react-native-paper";
+import { ThemeProvider } from "styled-components";
 
-import {
-	useFonts,
-	Poppins_600SemiBold_Italic,
-	Poppins_700Bold,
-	Poppins_900Black_Italic,
-} from "@expo-google-fonts/poppins";
+import { useFonts, Poppins_700Bold } from "@expo-google-fonts/poppins";
 
 import { HomeScreen } from "./src/features/Home.screen";
+import { theme } from "./src/infrastructure/theme";
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-	const [numberOfUsers, setNumberOfUsers] = useState(0);
-
-	let [poppinsFontsLoaded] = useFonts({
-		Poppins_600SemiBold_Italic,
+	const [poppinsLoaded] = useFonts({
 		Poppins_700Bold,
-		Poppins_900Black_Italic,
 	});
-	if (!poppinsFontsLoaded) {
+
+	if (!poppinsLoaded) {
 		return (
 			<ActivityIndicator
 				animating={true}
-				color="#74d88e"
+				color={theme.colors.bg.primary}
 				style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
 			/>
 		);
-	} else {
-		return (
+	}
+
+	return (
+		<ThemeProvider theme={theme}>
 			<SafeAreaProvider>
 				<NavigationContainer>
 					<Stack.Navigator>
@@ -46,8 +42,8 @@ export default function App() {
 						/>
 					</Stack.Navigator>
 				</NavigationContainer>
-				<StatusBar style="auto" backgroundColor="#74d88e" />
+				<StatusBar style="dark" backgroundColor={theme.colors.bg.primary} />
 			</SafeAreaProvider>
-		);
-	}
+		</ThemeProvider>
+	);
 }
