@@ -4,9 +4,8 @@ import { Button } from "react-native-paper";
 
 // Game Logic goes here
 export const PlayerBoardScreen = ({ route, navigation }) => {
-	const players = route.params.players;
-
 	const playerValueSetter = () => {
+		const players = route.params.players;
 		const valuesList = [];
 		for (let i = 0; i < players.length; i++) {
 			valuesList.push({ key: players[i], value: 0 });
@@ -15,8 +14,6 @@ export const PlayerBoardScreen = ({ route, navigation }) => {
 	};
 
 	const [scores, setScores] = useState(playerValueSetter);
-
-	console.log(scores);
 
 	return (
 		<View style={{ flex: 1 }}>
@@ -30,9 +27,9 @@ export const PlayerBoardScreen = ({ route, navigation }) => {
 						padding: 12,
 					}}
 				>
-					{players.map((item) => (
+					{scores.map((item) => (
 						<View
-							key={item}
+							key={item.key}
 							style={{
 								padding: 55,
 								backgroundColor: "#74d88e",
@@ -42,7 +39,8 @@ export const PlayerBoardScreen = ({ route, navigation }) => {
 							}}
 							elevation={4}
 						>
-							<Text style={{ alignSelf: "center" }}>{item}</Text>
+							<Text style={{ alignSelf: "center" }}>{item.key}</Text>
+							<Text> S: {item.value} </Text>
 						</View>
 					))}
 				</View>
