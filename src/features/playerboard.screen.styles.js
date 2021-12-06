@@ -23,14 +23,16 @@ export const PlayerCard = styled(View).attrs({
 
 export const PlayerName = styled(Text)`
 	font-size: ${(props) => props.theme.sizes[1]};
-	font-weight: bold;
 	text-transform: uppercase;
+	font-family: "Poppins_700Bold";
 `;
+// font-weight: bold;
 
 export const PlayerScore = styled(Text)`
 	font-size: ${(props) => props.theme.sizes[1]};
-	font-weight: bold;
+	font-family: "Poppins_700Bold";
 `;
+// font-weight: bold;
 
 export const InputScore = styled(TextInput).attrs({
 	elevation: 4,
