@@ -76,9 +76,8 @@ export const AddUserNamesScreen = ({ navigation }) => {
 			<InnerCard>
 				<InputsContainer>
 					{inputs.map((input, key) => (
-						<InputContainer>
+						<InputContainer key={key}>
 							<UserName
-								key={key}
 								placeholder={"Player name"}
 								value={input.value}
 								onChangeText={(text) => inputHandler(text, key)}
