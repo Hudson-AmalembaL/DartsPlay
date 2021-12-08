@@ -24,19 +24,33 @@ export const PlayerBoardScreen = ({ route, navigation }) => {
 
 	const [scores, setScores] = useState(playerValueSetter);
 
+	const updateScoreHandler = (newScore, key) => {
+		console.log(newScore, key);
+		const newScores = [...scores];
+		newScores[key].score = newScore;
+		setScores(newScores);
+	};
+
+	// console.log(scores);
+
 	return (
 		<PlayerBoardWrapper>
 			<Button onPress={() => null}>Score Board </Button>
 			<PlayerBoardScrollView>
-				{scores.map((item) => {
-					const { name, score } = item;
+				{scores.map((player, key) => {
 					return (
-						<PlayerCard key={name}>
+						<PlayerCard key={player.name}>
 							<CardHeader>
-								<PlayerName>{name}</PlayerName>
-								<PlayerScore> Score: {score} </PlayerScore>
+								<PlayerName>{player.name}</PlayerName>
+								<PlayerScore> Score: {player.score} </PlayerScore>
 							</CardHeader>
-							<InputScore placeholder="Score" />
+							<InputScore
+								placeholder="Score"
+								value={scores[key].score}
+								onChangeText={(newScore) => {
+									updateScoreHandler(newScore, key);
+								}}
+							/>
 						</PlayerCard>
 					);
 				})}
