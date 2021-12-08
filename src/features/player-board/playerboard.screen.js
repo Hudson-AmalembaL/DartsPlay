@@ -7,6 +7,7 @@ import {
 	PlayerCard,
 	CardHeader,
 	PlayerName,
+	PreviousScoreText,
 	PlayerScore,
 	InputScore,
 } from "./playerboard.screen.styles";
@@ -38,15 +39,19 @@ export const PlayerBoardScreen = ({ route, navigation }) => {
 			<Button onPress={() => null}>Score Board </Button>
 			<PlayerBoardScrollView>
 				{scores.map((player, key) => {
+					const { name, score } = player;
 					return (
-						<PlayerCard key={player.name}>
+						<PlayerCard key={name}>
 							<CardHeader>
-								<PlayerName>{player.name}</PlayerName>
-								<PlayerScore> Score: {player.score} </PlayerScore>
+								<PlayerName>{name}</PlayerName>
+								<PreviousScoreText style={{ padding: 10, color: "slategray" }}>
+									current-score: {score}
+								</PreviousScoreText>
 							</CardHeader>
+							{/* <PlayerScore> : {score} </PlayerScore> */}
 							<InputScore
 								placeholder="Score"
-								value={scores[key].score}
+								value={score}
 								onChangeText={(newScore) => {
 									updateScoreHandler(newScore, key);
 								}}

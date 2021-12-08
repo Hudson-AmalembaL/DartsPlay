@@ -24,13 +24,13 @@ export const PlayerCard = styled(View).attrs({
 export const PlayerName = styled(Text)`
 	font-size: ${(props) => props.theme.sizes[1]};
 	text-transform: uppercase;
-	font-family: "Poppins_700Bold";
+	font-family: "Poppins_600SemiBold";
+	color: royalblue;
 `;
-// font-weight: bold;
 
 export const PlayerScore = styled(Text)`
 	font-size: ${(props) => props.theme.sizes[1]};
-	font-family: "Poppins_700Bold";
+	font-family: "Poppins_600SemiBold";
 `;
 // font-weight: bold;
 
@@ -42,6 +42,10 @@ export const InputScore = styled(TextInput).attrs({
 	padding: ${(props) => props.theme.space[2]};
 	border-radius: ${(props) => props.theme.sizes[0]};
 	background-color: ${(props) => props.theme.colors.bg.secondary};
+`;
+
+export const PreviousScoreText = styled(Text)`
+	font-weight: bold;
 `;
 
 export const CardHeader = styled(View)`

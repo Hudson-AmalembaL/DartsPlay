@@ -1,7 +1,7 @@
 export const fonts = {
 	body: "Poppins_600SemiBold_Italic",
-	heading: "Poppins_700Bold",
-	monospace: "Poppins_900Black_Italic",
+	heading: "Poppins_400Bold",
+	monospace: "Poppins_400Bold",
 };
 
 export const fontWeights = {

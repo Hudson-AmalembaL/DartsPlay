@@ -8,7 +8,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { ActivityIndicator } from "react-native-paper";
 import { ThemeProvider } from "styled-components";
 
-import { useFonts, Poppins_700Bold } from "@expo-google-fonts/poppins";
+import { useFonts, Poppins_600SemiBold } from "@expo-google-fonts/poppins";
 
 import { HomeScreen } from "./src/features/home/Home.screen";
 import { theme } from "./src/infrastructure/theme";
@@ -17,13 +17,14 @@ const Stack = createNativeStackNavigator();
 
 export default function App() {
 	const [poppinsLoaded] = useFonts({
-		Poppins_700Bold,
+		Poppins_600SemiBold,
 	});
 
 	if (!poppinsLoaded) {
 		return (
 			<ActivityIndicator
 				animating={true}
+				size={70}
 				color={theme.colors.bg.primary}
 				style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
 			/>
