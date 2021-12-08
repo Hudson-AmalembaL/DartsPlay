@@ -26,7 +26,6 @@ export const PlayerBoardScreen = ({ route, navigation }) => {
 	const [scores, setScores] = useState(playerValueSetter);
 
 	const updateScoreHandler = (newScore, key) => {
-		console.log(newScore, key);
 		const newScores = [...scores];
 		newScores[key].score = newScore;
 		setScores(newScores);

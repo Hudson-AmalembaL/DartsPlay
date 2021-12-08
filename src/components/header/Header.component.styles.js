@@ -16,7 +16,7 @@ export const HeaderView = styled(View).attrs({
 
 export const HeaderText = styled(Text)`
 	font-size: 24px;
-	font-family: "Poppins_700Bold";
+	font-family: "Poppins_600SemiBold";
 	color: gray;
 `;
 
