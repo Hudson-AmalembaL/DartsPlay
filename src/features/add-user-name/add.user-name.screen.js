@@ -9,10 +9,11 @@ import {
 	DeleteButton,
 	DeleteText,
 } from "./add.user-name.screen.styles";
-import { UserButton } from "../components/button/button.component";
+
+import { UserButton } from "../../components/button/button.component";
 
 import { Button as StyleButton } from "react-native-paper";
-import { colors } from "../infrastructure/theme/colors";
+import { colors } from "../../infrastructure/theme/colors";
 
 export const AddUserNamesScreen = ({ navigation }) => {
 	const [inputs, setInputs] = useState([{ key: "", value: "" }]);

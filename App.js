@@ -10,7 +10,7 @@ import { ThemeProvider } from "styled-components";
 
 import { useFonts, Poppins_700Bold } from "@expo-google-fonts/poppins";
 
-import { HomeScreen } from "./src/features/Home.screen";
+import { HomeScreen } from "./src/features/home/Home.screen";
 import { theme } from "./src/infrastructure/theme";
 
 const Stack = createNativeStackNavigator();

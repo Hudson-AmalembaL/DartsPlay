@@ -2,11 +2,11 @@ import React from "react";
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import { Header } from "../../components/header/Header.component";
-import { AddUserNamesScreen } from "./add.user-name.screen.js";
-import { SplashScreen } from "./splash.screen";
-import { PlayerBoardScreen } from "./playerboard.screen";
+import { AddUserNamesScreen } from "../add-user-name/add.user-name.screen.js";
+import { SplashScreen } from "../home/splash.screen";
+import { PlayerBoardScreen } from "../player-board/playerboard.screen";
 
+import { Header } from "../../components/header/Header.component";
 import { SafeArea, Wrapper } from "./Home.screen.styles";
 
 const Stack = createNativeStackNavigator();
