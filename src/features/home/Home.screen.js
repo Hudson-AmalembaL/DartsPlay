@@ -2,9 +2,9 @@ import React from "react";
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import { Header } from "../components/header/Header.component";
+import { Header } from "../../components/header/Header.component";
 import { AddUserNamesScreen } from "./add.user-name.screen.js";
-import { SplashScreen } from "../features/splash.screen";
+import { SplashScreen } from "./splash.screen";
 import { PlayerBoardScreen } from "./playerboard.screen";
 
 import { SafeArea, Wrapper } from "./Home.screen.styles";
