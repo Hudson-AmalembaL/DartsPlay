@@ -28,11 +28,6 @@ export const PlayerBoardScreen = ({ route, navigation }) => {
 	const [scores, setScores] = useState(playerValueSetter);
 	const [points, setPoints] = useState(0);
 
-	// const updateScoreHandler = (newScore, key) => {
-	// 	setPoints(newScore);
-
-	// };
-
 	const handleSubmitButton = (key) => {
 		const newScores = [...scores];
 		newScores[key].score = points;
@@ -56,9 +51,8 @@ export const PlayerBoardScreen = ({ route, navigation }) => {
 							<View style={{ flexDirection: "row" }}>
 								<InputScore
 									placeholder="Score"
-									value={score}
+									// value={score}
 									onChangeText={(newScore) => {
-										// updateScoreHandler(newScore, key);
 										setPoints(newScore);
 									}}
 								/>
