@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { View } from "react-native";
 import { Button } from "react-native-paper";
 
 import {
@@ -14,6 +15,7 @@ import {
 
 // Game Logic goes here
 export const PlayerBoardScreen = ({ route, navigation }) => {
+	console.log(`Players are ${route.params.players} `);
 	const playerValueSetter = () => {
 		const players = route.params.players;
 		const valuesList = [];
@@ -24,10 +26,16 @@ export const PlayerBoardScreen = ({ route, navigation }) => {
 	};
 
 	const [scores, setScores] = useState(playerValueSetter);
+	const [points, setPoints] = useState(0);
 
-	const updateScoreHandler = (newScore, key) => {
+	// const updateScoreHandler = (newScore, key) => {
+	// 	setPoints(newScore);
+
+	// };
+
+	const handleSubmitButton = (key) => {
 		const newScores = [...scores];
-		newScores[key].score = newScore;
+		newScores[key].score = points;
 		setScores(newScores);
 	};
 
@@ -43,18 +51,19 @@ export const PlayerBoardScreen = ({ route, navigation }) => {
 						<PlayerCard key={name}>
 							<CardHeader>
 								<PlayerName>{name}</PlayerName>
-								<PreviousScoreText style={{ padding: 10, color: "slategray" }}>
-									current-score: {score}
-								</PreviousScoreText>
+								<PreviousScoreText>current-score: {score}</PreviousScoreText>
 							</CardHeader>
-							{/* <PlayerScore> : {score} </PlayerScore> */}
-							<InputScore
-								placeholder="Score"
-								value={score}
-								onChangeText={(newScore) => {
-									updateScoreHandler(newScore, key);
-								}}
-							/>
+							<View style={{ flexDirection: "row" }}>
+								<InputScore
+									placeholder="Score"
+									value={score}
+									onChangeText={(newScore) => {
+										// updateScoreHandler(newScore, key);
+										setPoints(newScore);
+									}}
+								/>
+								<Button onPress={() => handleSubmitButton(key)}>Confirm</Button>
+							</View>
 						</PlayerCard>
 					);
 				})}
