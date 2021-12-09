@@ -46,6 +46,8 @@ export const InputScore = styled(TextInput).attrs({
 
 export const PreviousScoreText = styled(Text)`
 	font-weight: bold;
+	padding: 10px;
+	color: slategray;
 `;
 
 export const CardHeader = styled(View)`
