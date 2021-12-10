@@ -36,13 +36,13 @@ export const PlayerBoardScreen = ({ route, navigation }) => {
 		// check when the max score has been reached
 		const pointsNumber = +points;
 		newScores[key].score = pointsNumber + currentScoreNumber;
-		setScores(newScores);
 		if (currentScoreNumber > 301) {
 			const currentScorePlayer = newScores[key].name;
 			console.log(
 				`${currentScorePlayer}'s marks of ${currentScoreNumber} is more than 301`
 			);
 		}
+		setScores(newScores);
 	};
 
 	// console.log(scores);
