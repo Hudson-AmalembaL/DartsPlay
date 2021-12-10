@@ -15,7 +15,7 @@ import {
 
 // Game Logic goes here
 export const PlayerBoardScreen = ({ route, navigation }) => {
-	console.log(`Players are ${route.params.players} `);
+	// console.log(`Players are ${route.params.players} `);
 	const playerValueSetter = () => {
 		const players = route.params.players;
 		const valuesList = [];
@@ -30,8 +30,19 @@ export const PlayerBoardScreen = ({ route, navigation }) => {
 
 	const handleSubmitButton = (key) => {
 		const newScores = [...scores];
-		newScores[key].score = points;
+		const currentScore = newScores[key].score;
+		const currentScoreNumber = +currentScore;
+
+		// check when the max score has been reached
+		const pointsNumber = +points;
+		newScores[key].score = pointsNumber + currentScoreNumber;
 		setScores(newScores);
+		if (currentScoreNumber > 301) {
+			const currentScorePlayer = newScores[key].name;
+			console.log(
+				`${currentScorePlayer}'s marks of ${currentScoreNumber} is more than 301`
+			);
+		}
 	};
 
 	// console.log(scores);
@@ -55,6 +66,7 @@ export const PlayerBoardScreen = ({ route, navigation }) => {
 									onChangeText={(newScore) => {
 										setPoints(newScore);
 									}}
+									clearButtonMode={true}
 								/>
 								<Button onPress={() => handleSubmitButton(key)}>Confirm</Button>
 							</View>
@@ -62,6 +74,7 @@ export const PlayerBoardScreen = ({ route, navigation }) => {
 					);
 				})}
 			</PlayerBoardScrollView>
+			<View style={{ flex: 4 }}></View>
 		</PlayerBoardWrapper>
 	);
 };

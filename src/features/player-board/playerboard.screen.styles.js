@@ -6,10 +6,9 @@ export const PlayerBoardWrapper = styled(View)`
 `;
 
 export const PlayerBoardScrollView = styled(ScrollView).attrs({
-	showsVerticalScrollIndicator: false,
-})`
-	flex: 1;
-`;
+	horizontal: true,
+	showsHorizontalScrollIndicator: false,
+})``;
 
 export const PlayerCard = styled(View).attrs({
 	elevation: 3,
@@ -18,7 +17,9 @@ export const PlayerCard = styled(View).attrs({
 	padding: ${(props) => props.theme.space[3]};
 	border-radius: ${(props) => props.theme.sizes[0]};
 	margin: ${(props) => props.theme.space[1]};
-	height: ${(props) => props.theme.sizes[4]};
+	height: 300px;
+	width: 300px;
+	align-self: center;
 `;
 
 export const PlayerName = styled(Text)`
