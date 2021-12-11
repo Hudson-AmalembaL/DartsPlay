@@ -26,14 +26,15 @@ export const PlayerBoardScreen = ({ route, navigation }) => {
 		const players = route.params.players;
 		const valuesList = [];
 		for (let i = 0; i < players.length; i++) {
-			valuesList.push({ name: players[i], score: 0 });
+			valuesList.push({ name: players[i], score: 0, scoreHistory: [] });
 		}
 		return valuesList;
 	};
 
 	const [scores, setScores] = useState(playerValueSetter);
-	const [score_history, setScoreHistory] = useState([]);
 	const [points, setPoints] = useState(0);
+
+	console.log(scores);
 
 	const handleSubmitButton = (key) => {
 		const newScores = [...scores];
@@ -46,9 +47,9 @@ export const PlayerBoardScreen = ({ route, navigation }) => {
 		const currentScore = +_currentScore;
 		if (currentScore < 301) {
 			if (_points > 41 || _points === 41) {
-				score_history.push(_points);
 				const _newScore = _points + currentScore;
 				newScores[key].score = _newScore;
+				newScores[key].scoreHistory.push(_points);
 				setScores(newScores);
 			}
 			if (_points < 41) {
@@ -65,7 +66,7 @@ export const PlayerBoardScreen = ({ route, navigation }) => {
 			<Button onPress={() => null}>Score Board </Button>
 			<PlayerBoardScrollView>
 				{scores.map((player, key) => {
-					const { name, score } = player;
+					const { name, score, scoreHistory } = player;
 					return (
 						<PlayerCard key={name}>
 							<CardHeader>
@@ -75,7 +76,7 @@ export const PlayerBoardScreen = ({ route, navigation }) => {
 							<ScoreHistoryHeaderText>Score History</ScoreHistoryHeaderText>
 							<CardContent>
 								<ScoreHistoryWrapper>
-									{score_history.map((score) => (
+									{scoreHistory.map((score) => (
 										<ScoreHistoryText>{score}</ScoreHistoryText>
 									))}
 								</ScoreHistoryWrapper>
