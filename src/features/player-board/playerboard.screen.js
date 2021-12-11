@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { View } from "react-native";
+import { View, Text } from "react-native";
 import { Button } from "react-native-paper";
+import { showToastWithGravityAndOffset } from "../../utils/show-toast";
 
 import {
 	PlayerBoardWrapper,
@@ -26,23 +27,30 @@ export const PlayerBoardScreen = ({ route, navigation }) => {
 	};
 
 	const [scores, setScores] = useState(playerValueSetter);
+	const [score_history, setScoreHistory] = useState([]);
 	const [points, setPoints] = useState(0);
 
 	const handleSubmitButton = (key) => {
 		const newScores = [...scores];
-		const currentScore = newScores[key].score;
-		const currentScoreNumber = +currentScore;
+		const _currentScore = newScores[key].score;
 
-		// check when the max score has been reached
-		const pointsNumber = +points;
-		newScores[key].score = pointsNumber + currentScoreNumber;
-		if (currentScoreNumber > 301) {
-			const currentScorePlayer = newScores[key].name;
-			console.log(
-				`${currentScorePlayer}'s marks of ${currentScoreNumber} is more than 301`
-			);
+		// Get the points from the state
+		const _points = +points;
+
+		// Get the current Score
+		const currentScore = +_currentScore;
+		if (currentScore < 301) {
+			if (_points > 41 || _points === 41) {
+				score_history.push(_points);
+				const _newScore = _points + currentScore;
+				newScores[key].score = _newScore;
+				setScores(newScores);
+			}
+			if (_points < 41) {
+				console.log(currentScore, _points);
+				showToastWithGravityAndOffset(`${_points} points are less than 41`);
+			}
 		}
-		setScores(newScores);
 	};
 
 	// console.log(scores);
@@ -59,14 +67,56 @@ export const PlayerBoardScreen = ({ route, navigation }) => {
 								<PlayerName>{name}</PlayerName>
 								<PreviousScoreText>current-score: {score}</PreviousScoreText>
 							</CardHeader>
-							<View style={{ flexDirection: "row" }}>
+							<Text
+								style={{
+									alignSelf: "center",
+									fontFamily: "Poppins_600SemiBold",
+									backgroundColor: "#22222222",
+									borderRadius: 5,
+									padding: 5,
+								}}
+							>
+								Score History
+							</Text>
+							<View
+								style={{
+									flex: 1,
+									padding: 5,
+									marginBottom: 5,
+								}}
+							>
+								<View
+									style={{
+										alignSelf: "center",
+										flexWrap: "wrap",
+										marginBottom: 8,
+									}}
+								>
+									{score_history.map((score) => (
+										<Text
+											style={{
+												backgroundColor: "#11111111",
+												borderRadius: 5,
+												padding: 5,
+												margin: 2,
+											}}
+										>
+											{score}{" "}
+										</Text>
+									))}
+								</View>
+							</View>
+							<View
+								style={{
+									flexDirection: "row",
+								}}
+							>
 								<InputScore
-									placeholder="Score"
+									style={{ alignSelf: "center" }}
 									// value={score}
 									onChangeText={(newScore) => {
 										setPoints(newScore);
 									}}
-									clearButtonMode={true}
 								/>
 								<Button onPress={() => handleSubmitButton(key)}>Confirm</Button>
 							</View>
