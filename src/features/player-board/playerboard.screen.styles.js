@@ -57,3 +57,34 @@ export const CardHeader = styled(View)`
 	flex-direction: row;
 	justify-content: space-between;
 `;
+
+export const ScoreHistoryHeaderText = styled(Text)`
+	align-self: center;
+	font-family: "Poppins_600SemiBold";
+	background-color: #22222222;
+	border-radius: 5px;
+	padding: 5px;
+`;
+
+export const ScoreHistoryText = styled(Text)`
+	background-color: #11111111;
+	border-radius: 5px;
+	padding: 5px;
+	margin: 2px;
+`;
+
+export const ScoreHistoryWrapper = styled(View)`
+	align-self: center;
+	flex-wrap: wrap;
+	margin-bottom: 8px;
+`;
+
+export const CardFooter = styled(View)`
+	flex-direction: row;
+`;
+
+export const CardContent = styled(View)`
+	flex: 1px;
+	padding: 5px;
+	margin-bottom: 5px;
+`;

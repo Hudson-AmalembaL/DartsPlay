@@ -11,6 +11,11 @@ import {
 	PlayerName,
 	PreviousScoreText,
 	PlayerScore,
+	ScoreHistoryHeaderText,
+	CardFooter,
+	ScoreHistoryWrapper,
+	ScoreHistoryText,
+	CardContent,
 	InputScore,
 } from "./playerboard.screen.styles";
 
@@ -21,14 +26,15 @@ export const PlayerBoardScreen = ({ route, navigation }) => {
 		const players = route.params.players;
 		const valuesList = [];
 		for (let i = 0; i < players.length; i++) {
-			valuesList.push({ name: players[i], score: 0 });
+			valuesList.push({ name: players[i], score: 0, scoreHistory: [] });
 		}
 		return valuesList;
 	};
 
 	const [scores, setScores] = useState(playerValueSetter);
-	const [score_history, setScoreHistory] = useState([]);
 	const [points, setPoints] = useState(0);
+
+	console.log(scores);
 
 	const handleSubmitButton = (key) => {
 		const newScores = [...scores];
@@ -41,9 +47,9 @@ export const PlayerBoardScreen = ({ route, navigation }) => {
 		const currentScore = +_currentScore;
 		if (currentScore < 301) {
 			if (_points > 41 || _points === 41) {
-				score_history.push(_points);
 				const _newScore = _points + currentScore;
 				newScores[key].score = _newScore;
+				newScores[key].scoreHistory.push(_points);
 				setScores(newScores);
 			}
 			if (_points < 41) {
@@ -60,57 +66,22 @@ export const PlayerBoardScreen = ({ route, navigation }) => {
 			<Button onPress={() => null}>Score Board </Button>
 			<PlayerBoardScrollView>
 				{scores.map((player, key) => {
-					const { name, score } = player;
+					const { name, score, scoreHistory } = player;
 					return (
 						<PlayerCard key={name}>
 							<CardHeader>
 								<PlayerName>{name}</PlayerName>
 								<PreviousScoreText>current-score: {score}</PreviousScoreText>
 							</CardHeader>
-							<Text
-								style={{
-									alignSelf: "center",
-									fontFamily: "Poppins_600SemiBold",
-									backgroundColor: "#22222222",
-									borderRadius: 5,
-									padding: 5,
-								}}
-							>
-								Score History
-							</Text>
-							<View
-								style={{
-									flex: 1,
-									padding: 5,
-									marginBottom: 5,
-								}}
-							>
-								<View
-									style={{
-										alignSelf: "center",
-										flexWrap: "wrap",
-										marginBottom: 8,
-									}}
-								>
-									{score_history.map((score) => (
-										<Text
-											style={{
-												backgroundColor: "#11111111",
-												borderRadius: 5,
-												padding: 5,
-												margin: 2,
-											}}
-										>
-											{score}{" "}
-										</Text>
+							<ScoreHistoryHeaderText>Score History</ScoreHistoryHeaderText>
+							<CardContent>
+								<ScoreHistoryWrapper>
+									{scoreHistory.map((score, index) => (
+										<ScoreHistoryText key={index}>+{score}</ScoreHistoryText>
 									))}
-								</View>
-							</View>
-							<View
-								style={{
-									flexDirection: "row",
-								}}
-							>
+								</ScoreHistoryWrapper>
+							</CardContent>
+							<CardFooter>
 								<InputScore
 									style={{ alignSelf: "center" }}
 									// value={score}
@@ -119,7 +90,7 @@ export const PlayerBoardScreen = ({ route, navigation }) => {
 									}}
 								/>
 								<Button onPress={() => handleSubmitButton(key)}>Confirm</Button>
-							</View>
+							</CardFooter>
 						</PlayerCard>
 					);
 				})}
