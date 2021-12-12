@@ -76,8 +76,8 @@ export const PlayerBoardScreen = ({ route, navigation }) => {
 							<ScoreHistoryHeaderText>Score History</ScoreHistoryHeaderText>
 							<CardContent>
 								<ScoreHistoryWrapper>
-									{scoreHistory.map((score) => (
-										<ScoreHistoryText>{score}</ScoreHistoryText>
+									{scoreHistory.map((score, index) => (
+										<ScoreHistoryText key={index}>+{score}</ScoreHistoryText>
 									))}
 								</ScoreHistoryWrapper>
 							</CardContent>
